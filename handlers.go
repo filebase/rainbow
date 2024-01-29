@@ -102,7 +102,7 @@ func setupGatewayHandler(cfg Config, nd *Node) (http.Handler, error) {
 
 	headers := map[string][]string{}
 	hostname, err := os.Hostname()
-	headers["X-Ipfs-Host"] = []string{hostname}
+	headers["X-Ipfs-Host"] = []string{hostname + os.Getenv("HOSTNAME_SUFFIX")}
 	gateway.AddAccessControlHeaders(headers)
 
 	// Note: in the future we may want to make this more configurable.
